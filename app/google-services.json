@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "812754421736",
+    "firebase_url": "https://mynoticeboardapp-1734f.firebaseio.com",
+    "project_id": "mynoticeboardapp-1734f",
+    "storage_bucket": "mynoticeboardapp-1734f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:812754421736:android:e61096391c8024f5",
+        "android_client_info": {
+          "package_name": "com.example.acer.mynoticeboardapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "812754421736-aac6rps3ku98q9blrnhvjhqtjgq80rq9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.acer.mynoticeboardapp",
+            "certificate_hash": "6dc8a26c069a7635385ca79cadc60afe663dea11"
+          }
+        },
+        {
+          "client_id": "812754421736-gbkdomub2mhlo8hn52pdno8ebs91sskk.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "812754421736-gbkdomub2mhlo8hn52pdno8ebs91sskk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBz-dr3HeJstB8X8Pb5nIc03GWSR927JtI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "812754421736-gbkdomub2mhlo8hn52pdno8ebs91sskk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Notice</string>
+    <string name="dialogtitle">Post Notice</string>
+        <string name="admin">Admin</string>
+    <string name="username">Username</string>
+    <string name="password">Enter Password</string>
+    <string name="message">Enter new notice</string>
+    <string name="register">Register</string>
+    <string name="student">Student</string>
+    <string name="send_notification">Send Notice</string>
+
+</resources>
