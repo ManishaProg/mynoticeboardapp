@@ -17,9 +17,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
-/**
- * Created by Ravi on 31/03/15.
- */
 
 public class MynotificationManager {
 
@@ -35,7 +32,7 @@ public class MynotificationManager {
     //the method will show a big notification with an image
     //parameters are title for message title, message for message text, url of the big image and an intent that will open
     //when you will tap on the notification
-    public void showBigNotification(String title, String message, String url, Intent intent) {
+   /* public void showBigNotification(String title, String message, String url, Intent intent) {
         PendingIntent resultPendingIntent =
                 PendingIntent.getActivity(
                         mCtx,
@@ -63,7 +60,7 @@ public class MynotificationManager {
 
         NotificationManager notificationManager = (NotificationManager) mCtx.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(ID_BIG_NOTIFICATION, notification);
-    }
+    }*/
 
     //the method will show a small notification
     //parameters are title for message title, message for message text and an intent that will open
@@ -96,7 +93,7 @@ public class MynotificationManager {
     }
 
     //The method will return Bitmap from an image URL
-    private Bitmap getBitmapFromURL(String strURL) {
+   /* private Bitmap getBitmapFromURL(String strURL) {
         try {
             URL url = new URL(strURL);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -109,5 +106,5 @@ public class MynotificationManager {
             e.printStackTrace();
             return null;
         }
-    }
+    }*/
 }

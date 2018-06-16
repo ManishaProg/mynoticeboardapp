@@ -31,7 +31,11 @@ public class ShowNotification extends AppCompatActivity implements View.OnClickL
         heading=findViewById(R.id.head);
         Intent i=getIntent();
         // from.setText( i.getStringExtra("getFrom"));
+       /* if(i.getStringExtra("heading")==null)
+            heading.setText( "Student Notice Board");*/
+      /*  else*/
         heading.setText(i.getStringExtra("heading ") + " Notice Board");
+
         String text=i.getStringExtra("title").toUpperCase();
         title.setText(text);
 

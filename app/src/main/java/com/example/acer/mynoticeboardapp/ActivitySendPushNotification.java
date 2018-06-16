@@ -42,20 +42,23 @@ public class ActivitySendPushNotification extends AppCompatActivity implements R
 
     private boolean isSendAllChecked;
     private List<String> devices;
+  private void killActivity() {
+        finish();
+    }
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.send_push_notification);
-
+        this.setFinishOnTouchOutside(true);
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
         spinner = (Spinner) findViewById(R.id.spinnerDevices);
         buttonSendPush = (Button) findViewById(R.id.buttonSendPush);
 
         editTextTitle = (EditText) findViewById(R.id.editTextTitle);
         editTextMessage = (EditText) findViewById(R.id.editTextMessage);
-        editTextImage = (EditText) findViewById(R.id.editTextImageUrl);
+       // editTextImage = (EditText) findViewById(R.id.editTextImageUrl);
 
         devices = new ArrayList<>();
 
@@ -131,7 +134,7 @@ public class ActivitySendPushNotification extends AppCompatActivity implements R
 
             final String title = editTextTitle.getText().toString();
             final String message = editTextMessage.getText().toString();
-            final String image = editTextImage.getText().toString();
+        //    final String image = editTextImage.getText().toString();
 
             progressDialog.setMessage("Sending Push");
             progressDialog.show();
@@ -157,8 +160,8 @@ public class ActivitySendPushNotification extends AppCompatActivity implements R
                     params.put("title", title);
                     params.put("message", message);
 
-                    if (!TextUtils.isEmpty(image))
-                        params.put("image", image);
+                   /* if (!TextUtils.isEmpty(image))
+                        params.put("image", image);*/
                     return params;
                 }
             };
@@ -169,10 +172,10 @@ public class ActivitySendPushNotification extends AppCompatActivity implements R
     private void sendSinglePush(){
             final String title = editTextTitle.getText().toString();
             final String message = editTextMessage.getText().toString();
-            final String image = editTextImage.getText().toString();
+           // final String image = editTextImage.getText().toString();
             final String email = spinner.getSelectedItem().toString();
 
-            progressDialog.setMessage("Sending Push");
+            progressDialog.setMessage("Sending Notice...");
             progressDialog.show();
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, EndPoints.URL_SEND_SINGLE_PUSH,
@@ -196,8 +199,8 @@ public class ActivitySendPushNotification extends AppCompatActivity implements R
                     params.put("title", title);
                     params.put("message", message);
 
-                    if (!TextUtils.isEmpty(image))
-                        params.put("image", image);
+                    /*if (!TextUtils.isEmpty(image))
+                        params.put("image", image);*/
 
                     params.put("email", email);
                     return params;
@@ -227,6 +230,17 @@ public class ActivitySendPushNotification extends AppCompatActivity implements R
     @Override
     public void onClick(View view) {
         //calling the method send push on button click
-        sendPush();
+        String title=editTextTitle.getText().toString();
+      String  msg=editTextMessage.getText().toString();
+        if (TextUtils.isEmpty(title) || TextUtils.isEmpty(msg))
+        {
+            Toast.makeText(getApplicationContext(),"nothing to send",Toast.LENGTH_LONG).show();
+        }
+        else {
+            sendPush();
+            progressDialog.dismiss();
+            killActivity();
+        }
     }
+
 }
