@@ -17,7 +17,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
-
 public class MynotificationManager {
 
     public static final int ID_BIG_NOTIFICATION = 234;

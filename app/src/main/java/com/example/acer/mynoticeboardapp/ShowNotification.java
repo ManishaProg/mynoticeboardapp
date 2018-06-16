@@ -17,39 +17,38 @@ import android.widget.TextView;
 public class ShowNotification extends AppCompatActivity implements View.OnClickListener {
 
 
-    private TextView from,title,notice,heading;
+    private TextView from, title, notice, heading;
     private Button addnotice;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shownotification);
-        from=findViewById(R.id.from);
-        title=findViewById(R.id.title);
-        notice=findViewById(R.id.notice);
-        addnotice=findViewById(R.id.addnotice);
-        heading=findViewById(R.id.head);
-        Intent i=getIntent();
+        from = findViewById(R.id.from);
+        title = findViewById(R.id.title);
+        notice = findViewById(R.id.notice);
+        addnotice = findViewById(R.id.addnotice);
+        heading = findViewById(R.id.head);
+        Intent i = getIntent();
         // from.setText( i.getStringExtra("getFrom"));
        /* if(i.getStringExtra("heading")==null)
             heading.setText( "Student Notice Board");*/
-      /*  else*/
+        /*  else*/
         heading.setText(i.getStringExtra("heading ") + " Notice Board");
 
-        String text=i.getStringExtra("title").toUpperCase();
+        String text = i.getStringExtra("title").toUpperCase();
         title.setText(text);
 
-        notice.setText( i.getStringExtra("message"));
+        notice.setText(i.getStringExtra("message"));
 
 
         addnotice.setOnClickListener(this);
     }
 
 
-
     @Override
     public void onClick(View view) {
-        Intent i=new Intent(getApplicationContext(),ActivitySendPushNotification.class);
+        Intent i = new Intent(getApplicationContext(), ActivitySendPushNotification.class);
         startActivity(i);
 
       /*  // get prompts.xml view

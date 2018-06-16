@@ -44,8 +44,8 @@ public class MessageService extends FirebaseMessagingService {
             //parsing json data
             String title = data.getString("title");
             String message = data.getString("message");
-           // String imageUrl = data.getString("image");
-           // String getFrom = data.getString("getFrom");
+            // String imageUrl = data.getString("image");
+            // String getFrom = data.getString("getFrom");
             /*NoticeBean nb=new NoticeBean();
           //  nb.setFrom();
            // nb.setMessage(message);
@@ -58,9 +58,9 @@ public class MessageService extends FirebaseMessagingService {
 
             //creating an intent for the notification
             Intent intent = new Intent(getApplicationContext(), ShowNotification.class);
-           // intent.putExtra("getFrom",getFrom);
-            intent.putExtra("title",title);
-            intent.putExtra("message",message);
+            // intent.putExtra("getFrom",getFrom);
+            intent.putExtra("title", title);
+            intent.putExtra("message", message);
             PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent,
                     PendingIntent.FLAG_ONE_SHOT);
             mNotificationManager.showSmallNotification(title, message, intent);

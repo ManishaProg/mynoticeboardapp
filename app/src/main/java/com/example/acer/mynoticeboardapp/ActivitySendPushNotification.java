@@ -42,7 +42,8 @@ public class ActivitySendPushNotification extends AppCompatActivity implements R
 
     private boolean isSendAllChecked;
     private List<String> devices;
-  private void killActivity() {
+
+    private void killActivity() {
         finish();
     }
 
@@ -58,7 +59,7 @@ public class ActivitySendPushNotification extends AppCompatActivity implements R
 
         editTextTitle = (EditText) findViewById(R.id.editTextTitle);
         editTextMessage = (EditText) findViewById(R.id.editTextMessage);
-       // editTextImage = (EditText) findViewById(R.id.editTextImageUrl);
+        // editTextImage = (EditText) findViewById(R.id.editTextImageUrl);
 
         devices = new ArrayList<>();
 
@@ -71,144 +72,143 @@ public class ActivitySendPushNotification extends AppCompatActivity implements R
 
     //method to load all the devices from database
     private void loadRegisteredDevices() {
-            progressDialog = new ProgressDialog(this);
-            progressDialog.setMessage("Fetching Devices...");
-            progressDialog.show();
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Fetching Devices...");
+        progressDialog.show();
 
-            StringRequest stringRequest = new StringRequest(Request.Method.GET, EndPoints.URL_FETCH_DEVICES,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            progressDialog.dismiss();
-                            JSONObject obj = null;
-                            try {
-                                obj = new JSONObject(response);
-                                if (!obj.getBoolean("error")) {
-                                    JSONArray jsonDevices = obj.getJSONArray("devices");
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, EndPoints.URL_FETCH_DEVICES,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        progressDialog.dismiss();
+                        JSONObject obj = null;
+                        try {
+                            obj = new JSONObject(response);
+                            if (!obj.getBoolean("error")) {
+                                JSONArray jsonDevices = obj.getJSONArray("devices");
 
-                                    for (int i = 0; i < jsonDevices.length(); i++) {
-                                        JSONObject d = jsonDevices.getJSONObject(i);
-                                        devices.add(d.getString("email"));
-                                    }
-
-                                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-                                            ActivitySendPushNotification.this,
-                                            android.R.layout.simple_spinner_dropdown_item,
-                                            devices);
-
-                                    spinner.setAdapter(arrayAdapter);
+                                for (int i = 0; i < jsonDevices.length(); i++) {
+                                    JSONObject d = jsonDevices.getJSONObject(i);
+                                    devices.add(d.getString("email"));
                                 }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
+
+                                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                                        ActivitySendPushNotification.this,
+                                        android.R.layout.simple_spinner_dropdown_item,
+                                        devices);
+
+                                spinner.setAdapter(arrayAdapter);
                             }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
 
-                        }
-                    }) {
+                    }
+                }) {
 
-            };
-            MyVolley.getInstance(this).addToRequestQueue(stringRequest);
-        }
-
+        };
+        MyVolley.getInstance(this).addToRequestQueue(stringRequest);
+    }
 
 
     //this method will send the push
     //from here we will call sendMultiple() or sendSingle() push method
     //depending on the selection
-    private void sendPush(){
+    private void sendPush() {
 
-            if(isSendAllChecked){
-                sendMultiplePush();
-            }else{
-                sendSinglePush();
-            }
+        if (isSendAllChecked) {
+            sendMultiplePush();
+        } else {
+            sendSinglePush();
+        }
 
 
     }
 
     private void sendMultiplePush() {
 
-            final String title = editTextTitle.getText().toString();
-            final String message = editTextMessage.getText().toString();
+        final String title = editTextTitle.getText().toString();
+        final String message = editTextMessage.getText().toString();
         //    final String image = editTextImage.getText().toString();
 
-            progressDialog.setMessage("Sending Push");
-            progressDialog.show();
+        progressDialog.setMessage("Sending Push");
+        progressDialog.show();
 
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, EndPoints.URL_SEND_MULTIPLE_PUSH,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            progressDialog.dismiss();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, EndPoints.URL_SEND_MULTIPLE_PUSH,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        progressDialog.dismiss();
 
-                            Toast.makeText(ActivitySendPushNotification.this, response, Toast.LENGTH_LONG).show();
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(ActivitySendPushNotification.this, response, Toast.LENGTH_LONG).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
 
-                        }
-                    }) {
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String, String> params = new HashMap<>();
-                    params.put("title", title);
-                    params.put("message", message);
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("title", title);
+                params.put("message", message);
 
                    /* if (!TextUtils.isEmpty(image))
                         params.put("image", image);*/
-                    return params;
-                }
-            };
+                return params;
+            }
+        };
 
-            MyVolley.getInstance(this).addToRequestQueue(stringRequest);
-        }
+        MyVolley.getInstance(this).addToRequestQueue(stringRequest);
+    }
 
-    private void sendSinglePush(){
-            final String title = editTextTitle.getText().toString();
-            final String message = editTextMessage.getText().toString();
-           // final String image = editTextImage.getText().toString();
-            final String email = spinner.getSelectedItem().toString();
+    private void sendSinglePush() {
+        final String title = editTextTitle.getText().toString();
+        final String message = editTextMessage.getText().toString();
+        // final String image = editTextImage.getText().toString();
+        final String email = spinner.getSelectedItem().toString();
 
-            progressDialog.setMessage("Sending Notice...");
-            progressDialog.show();
+        progressDialog.setMessage("Sending Notice...");
+        progressDialog.show();
 
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, EndPoints.URL_SEND_SINGLE_PUSH,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            progressDialog.dismiss();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, EndPoints.URL_SEND_SINGLE_PUSH,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        progressDialog.dismiss();
 
-                            Toast.makeText(ActivitySendPushNotification.this, response, Toast.LENGTH_LONG).show();
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(ActivitySendPushNotification.this, response, Toast.LENGTH_LONG).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
 
-                        }
-                    }) {
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String, String> params = new HashMap<>();
-                    params.put("title", title);
-                    params.put("message", message);
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("title", title);
+                params.put("message", message);
 
                     /*if (!TextUtils.isEmpty(image))
                         params.put("image", image);*/
 
-                    params.put("email", email);
-                    return params;
-                }
-            };
+                params.put("email", email);
+                return params;
+            }
+        };
 
-            MyVolley.getInstance(this).addToRequestQueue(stringRequest);
-        }
+        MyVolley.getInstance(this).addToRequestQueue(stringRequest);
+    }
 
 
     @Override
@@ -230,13 +230,11 @@ public class ActivitySendPushNotification extends AppCompatActivity implements R
     @Override
     public void onClick(View view) {
         //calling the method send push on button click
-        String title=editTextTitle.getText().toString();
-      String  msg=editTextMessage.getText().toString();
-        if (TextUtils.isEmpty(title) || TextUtils.isEmpty(msg))
-        {
-            Toast.makeText(getApplicationContext(),"nothing to send",Toast.LENGTH_LONG).show();
-        }
-        else {
+        String title = editTextTitle.getText().toString();
+        String msg = editTextMessage.getText().toString();
+        if (TextUtils.isEmpty(title) || TextUtils.isEmpty(msg)) {
+            Toast.makeText(getApplicationContext(), "nothing to send", Toast.LENGTH_LONG).show();
+        } else {
             sendPush();
             progressDialog.dismiss();
             killActivity();

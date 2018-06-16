@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView next;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,8 +59,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         student.setOnClickListener(this);*/
         email_id = (EditText) findViewById(R.id.edit_email);
         register = findViewById(R.id.register);
-        type=findViewById(R.id.type);
-        next=findViewById(R.id.next);
+        type = findViewById(R.id.type);
+        next = findViewById(R.id.next);
         email_id.setOnClickListener(this);
         register.setOnClickListener(this);
         type.setOnItemSelectedListener(this);
@@ -82,8 +81,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         type.setAdapter(dataAdapter);
 
         next.setOnClickListener(this);
-
-
 
 
         br = new BroadcastReceiver() {
@@ -161,15 +158,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        if(view == register)
-                 sendTokenToServer();
-        if(view == next){
+        if (view == register)
+            sendTokenToServer();
+        if (view == next) {
 
-            Intent i= new Intent(getApplicationContext(),ShowNotification.class);
-           // String h=type.getSelectedItem().toString();
+            Intent i = new Intent(getApplicationContext(), ShowNotification.class);
+            // String h=type.getSelectedItem().toString();
 
-            i.putExtra("heading ",type.getSelectedItem().toString());
-            i.putExtra("title" ," ");
+            i.putExtra("heading ", type.getSelectedItem().toString());
+            i.putExtra("title", " ");
             i.putExtra("message", " ");
             PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, i,
                     PendingIntent.FLAG_ONE_SHOT);

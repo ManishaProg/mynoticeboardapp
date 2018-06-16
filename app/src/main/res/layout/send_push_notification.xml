@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -27,27 +26,28 @@
             android:text="Send to One" />
 
     </RadioGroup>
-<LinearLayout
-    android:layout_marginTop="30dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:paddingLeft="30dp"
-    android:paddingRight="30dp"
-   >
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SEND TO"
-        android:textAlignment="center"
-        android:textColor="#000000"/>
-    <Spinner
-        android:id="@+id/spinnerDevices"
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        ></Spinner>
-</LinearLayout>
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SEND TO"
+            android:textAlignment="center"
+            android:textColor="#000000" />
+
+        <Spinner
+            android:id="@+id/spinnerDevices"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"></Spinner>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:text="SUBJECT"
             android:textAlignment="center"
-            android:textColor="#000000"/>
+            android:textColor="#000000" />
 
         <EditText
             android:id="@+id/editTextTitle"
@@ -72,37 +72,35 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingRight="30dp"
-        android:paddingLeft="30dp"
         android:orientation="vertical"
-        >
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="WRITE NOTICE :"
-            android:textColor="#000000"
             android:textAlignment="center"
-            />
-    <EditText
-        android:id="@+id/editTextMessage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="vertical"
-        />
-</LinearLayout>
+            android:textColor="#000000" />
 
+        <EditText
+            android:id="@+id/editTextMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical" />
+    </LinearLayout>
 
 
     <Button
         android:id="@+id/buttonSendPush"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Send"
         android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
         android:layout_marginTop="50dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="20dp"
         android:background="@layout/button_border_settings"
-        android:layout_marginBottom="20dp"/>
+        android:text="Send" />
 
 
 </LinearLayout>

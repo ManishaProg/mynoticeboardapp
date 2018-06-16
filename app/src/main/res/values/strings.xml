@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Notice</string>
     <string name="dialogtitle">Post Notice</string>
-        <string name="admin">Admin</string>
+    <string name="admin">Admin</string>
     <string name="username">USERNAME</string>
     <string name="password">Enter Password</string>
     <string name="message">Enter new notice</string>

@@ -7,14 +7,14 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 
 public class FirebaseToken extends FirebaseInstanceIdService {
-    public static final String TOKEN_BROADCAST ="mytoken";
+    public static final String TOKEN_BROADCAST = "mytoken";
 
     @Override
     public void onTokenRefresh() {
         // Get updated InstanceID token.
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
         Log.d("mytoken", "Refreshed token: " + refreshedToken);
-       getApplicationContext().sendBroadcast(new Intent(TOKEN_BROADCAST));
+        getApplicationContext().sendBroadcast(new Intent(TOKEN_BROADCAST));
         storeToken(refreshedToken);
     }
 
